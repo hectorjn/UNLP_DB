@@ -3,9 +3,22 @@
     <application>${app.id}</application>
     <version>${app.version}</version>
     <threadsafe>true</threadsafe>
-    
+
+    <!--
+      Allows App Engine to send multiple requests to one instance in parallel:
+    -->
+
+    <!-- Configure java.util.logging -->
     <system-properties>
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     </system-properties>
+    <sessions-enabled>true</sessions-enabled>
+    <async-session-persistence enabled="false" />
+
+    <static-files>
+        <exclude path="/**.xhtml" />
+    </static-files>
 
 </appengine-web-app>
+
+
