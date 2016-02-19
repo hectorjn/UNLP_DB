@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="ar.edu.unlp.entities.Item">
+        <table name="Item" schema="SistemaTickets" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="idItem" precision="11"/>
+            </id>
+            <basic name="tituloItem">
+                <column name="tituloItem"/>
+            </basic>
+            <basic name="descripcion">
+                <column name="descItem" nullable="false"/>
+            </basic>
+            <basic name="fechaCreacion">
+                <column name="fechacreacion" nullable="false" precision="-1"/>
+            </basic>
+            <basic name="prioridad">
+                <column name="prioridad" nullable="false" length="45"/>
+            </basic>
+            <many-to-one name="proyecto" optional="true" target-entity="ar.edu.unlp.entities.Proyecto">
+                <join-column name="idProyecto" referenced-column-name="idProyecto"/>
+            </many-to-one>
+            <one-to-many name="transacciones" mapped-by="item" target-entity="ar.edu.unlp.entities.TransicionItem"/>
+            <one-to-one name="estadoActual" optional="true" target-entity="ar.edu.unlp.entities.Estado">
+                <join-column name="estadoActual" referenced-column-name="idEstado"/>
+            </one-to-one>
+            <one-to-one name="tipoItem" optional="true" target-entity="ar.edu.unlp.entities.TipoItem">
+                <join-column name="idTipoItem" referenced-column-name="idTipoItem"/>
+            </one-to-one>
+            <one-to-one name="responsable" optional="true" target-entity="ar.edu.unlp.entities.UsuarioRolEquipo">
+                <join-column name="responsable" referenced-column-name="idUsuarioRolEquipo"/>
+            </one-to-one>
+        </attributes>
+    </entity>
+</entity-mappings>

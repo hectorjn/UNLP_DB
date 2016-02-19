@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="ar.edu.unlp.entities.TipoItem">
+        <table name="TipoItem" schema="SistemaTickets" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="idTipoItem" precision="11"/>
+            </id>
+            <basic name="descripcion">
+                <column name="descripcion" nullable="false"/>
+            </basic>
+            <many-to-one name="proyecto" optional="true" target-entity="ar.edu.unlp.entities.Proyecto">
+                <join-column name="idProyecto" referenced-column-name="idProyecto"/>
+            </many-to-one>
+            <one-to-many name="estados" mapped-by="tipoItem" target-entity="ar.edu.unlp.entities.Estado"/>
+        </attributes>
+    </entity>
+</entity-mappings>

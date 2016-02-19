@@ -4,43 +4,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="resources/images/css/style.css/style.css" />
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="wrapper">
-            <h1>Sistema de Tickets </h1>
-            <h2>Demo by:<span>H&eacute;ctor E. Jim&eacute;nez N. </span> </h2>
-            <div class="content">
-                <div id="form_wrapper" class="form_wrapper">
-                    <form class="login active" action="login" method="POST" autocomplete="off">
-                        <h3>Login</h3>
-                        <div>
-                            <label>Usuario:</label>
-                            <input type="text" name="username" value ="${requestScope.usuario.username}"/>
-
-                            <c:if test="${requestScope.nameError ne null}">
-                                <span class="error"><c:out value="${requestScope.nameError}"/></span>
-                            </c:if>
-                        </div>
-                        <div>
-                            <label>Contrase&ntilde;a: </label>
-                            <input type="password"  name="password" value="${requestScope.usuario.password}"/>
-                            <c:if test="${requestScope.passwordError ne null}">
-                                <span class="error"><c:out value="${requestScope.passwordError}"/></span>
-                            </c:if>
-                        </div>
-                       <c:if test="${requestScope.loginError ne null}">
-                                <span class="error"><c:out value="${requestScope.loginError}"/></span>
-                            </c:if>
-                        <div class="bottom">
-                            <input type="submit" value="Ingresar"></input>
-                            <div class="clear"></div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
+        <% response.sendRedirect("pages/public/login.jsf");%>
     </body>
 </html>
+
+<h:outputStylesheet library="css" name="theme.css"  />

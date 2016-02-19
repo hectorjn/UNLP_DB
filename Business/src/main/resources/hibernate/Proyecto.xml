@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="ar.edu.unlp.entities.Proyecto">
+        <table name="Proyecto" schema="SistemaTickets" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="idProyecto" precision="11"/>
+            </id>
+            <basic name="nombre">
+                <column name="nomProyecto" nullable="false"/>
+            </basic>
+            <basic name="objetivo">
+                <column name="objProyecto" nullable="false"/>
+            </basic>
+            <basic name="fechaInicio">
+                <column name="inicioProyecto" nullable="false" precision="-1"/>
+            </basic>
+            <basic name="fechaFin">
+                <column name="finProyecto" nullable="false" precision="-1"/>
+            </basic>
+            <basic name="productivo">
+                <column name="productivoProyecto" nullable="false" precision="1"/>
+            </basic>
+            <many-to-one name="lider" optional="true" target-entity="ar.edu.unlp.entities.Usuario">
+                <join-column name="idLider" referenced-column-name="idUsuario"/>
+            </many-to-one>
+            <one-to-many name="equipos" mapped-by="proyecto" target-entity="ar.edu.unlp.entities.Equipo"/>
+            <one-to-many name="items" mapped-by="proyecto" target-entity="ar.edu.unlp.entities.Item"/>
+            <one-to-many name="tiposItem" mapped-by="proyecto" target-entity="ar.edu.unlp.entities.TipoItem"/>
+        </attributes>
+    </entity>
+</entity-mappings>

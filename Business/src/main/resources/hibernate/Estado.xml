@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="ar.edu.unlp.entities.Estado">
+        <table name="Estado" schema="SistemaTickets" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="idEstado" precision="11"/>
+            </id>
+            <basic name="nombre">
+                <column name="nombreEstado" nullable="false"/>
+            </basic>
+            <basic name="tipoEstado">
+                <column name="tipoEstado" nullable="false" length="1"/>
+            </basic>
+            <many-to-one name="tipoItem" optional="true" target-entity="ar.edu.unlp.entities.TipoItem">
+                <join-column name="idTipoItem" referenced-column-name="idTipoItem"/>
+            </many-to-one>
+            <one-to-many name="estadosAnteriores" mapped-by="estadoSiguiente"
+                         target-entity="ar.edu.unlp.entities.WorkFlow"/>
+            <one-to-many name="estadosSiguientes" mapped-by="estadoActual"
+                         target-entity="ar.edu.unlp.entities.WorkFlow"/>
+            <one-to-one name="equiposAtencion" optional="true" mapped-by="estado"
+                        target-entity="ar.edu.unlp.entities.EquipoAtencion"/>
+        </attributes>
+    </entity>
+</entity-mappings>

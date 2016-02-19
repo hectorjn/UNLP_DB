@@ -9,5 +9,5 @@
         <!--<property name="sessionFactory" ref="sessionFactory"/>-->
     <!--</bean>-->
 
-    <context:component-scan base-package="ar.edu.unlp" />
+    <context:component-scan base-package="ar.edu.unlp.dao" />
 </beans>

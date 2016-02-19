@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="ar.edu.unlp.entities.TransicionItem">
+        <table name="TransicionItem" schema="SistemaTickets" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="idTransicionItem" precision="11"/>
+            </id>
+            <basic name="fecha">
+                <column name="fecha" nullable="false" precision="-1"/>
+            </basic>
+            <basic name="comentario">
+                <column name="comentario" nullable="false"/>
+            </basic>
+            <many-to-one name="item" optional="true" target-entity="ar.edu.unlp.entities.Item">
+                <join-column name="idItem" referenced-column-name="idItem"/>
+            </many-to-one>
+            <one-to-one name="actor" optional="true" target-entity="ar.edu.unlp.entities.UsuarioRolEquipo">
+                <join-column name="actor" referenced-column-name="idUsuarioRolEquipo"/>
+            </one-to-one>
+            <one-to-one name="workflow" optional="true" target-entity="ar.edu.unlp.entities.WorkFlow">
+                <join-column name="idWorkFlow" referenced-column-name="idWorkFlow"/>
+            </one-to-one>
+        </attributes>
+    </entity>
+</entity-mappings>

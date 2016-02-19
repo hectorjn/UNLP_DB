@@ -3,16 +3,23 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location">
-            <value>properties/database.properties</value>
-        </property>
-    </bean>
+
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="mappingResources">
             <list>
-                <value>/hibernate/Role.hbm.xml</value>
+                <value>hibernate/Equipo.xml</value>
+                <value>hibernate/EquipoAtencion.xml</value>
+                <value>hibernate/Estado.xml</value>
+                <value>hibernate/Item.xml</value>
+                <value>hibernate/Proyecto.xml</value>
+                <value>hibernate/Rol.xml</value>
+                <value>hibernate/TipoDocumento.xml</value>
+                <value>hibernate/TipoItem.xml</value>
+                <value>hibernate/TransicionItem.xml</value>
+                <value>hibernate/Usuario.xml</value>
+                <value>hibernate/UsuarioRolEquipo.xml</value>
+                <value>hibernate/WorkFlow.xml</value>
             </list>
         </property>
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="ar.edu.unlp.entities.Usuario">
+        <table name="Usuario" schema="SistemaTickets" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="idUsuario" precision="11"/>
+            </id>
+            <basic name="numeroDocumento">
+                <column name="numDocumento" nullable="false" length="15"/>
+            </basic>
+            <basic name="nombreCompleto">
+                <column name="nombreCompleto" nullable="false" length="45"/>
+            </basic>
+            <basic name="email">
+                <column name="email" nullable="false" length="45"/>
+            </basic>
+            <basic name="usuario">
+                <column name="usuario" nullable="false" length="45"/>
+            </basic>
+            <basic name="password">
+                <column name="password" nullable="false" length="45"/>
+            </basic>
+            <many-to-one name="rolPrincipal" optional="true" target-entity="ar.edu.unlp.entities.Rol">
+                <join-column name="idRolPrincipal" referenced-column-name="idRol"/>
+            </many-to-one>
+            <one-to-many name="proyectosLiderados" mapped-by="lider" target-entity="ar.edu.unlp.entities.Proyecto"/>
+            <one-to-many name="equipos" mapped-by="usuario" target-entity="ar.edu.unlp.entities.UsuarioRolEquipo"/>
+            <one-to-one name="tipoDocumento" optional="true" target-entity="ar.edu.unlp.entities.TipoDocumento">
+                <join-column name="idTipoDocumento" referenced-column-name="idTipoDocumento"/>
+            </one-to-one>
+        </attributes>
+    </entity>
+</entity-mappings>

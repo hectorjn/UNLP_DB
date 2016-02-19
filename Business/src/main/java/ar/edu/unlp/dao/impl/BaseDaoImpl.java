@@ -5,6 +5,7 @@ import ar.edu.unlp.entities.BaseEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,7 +13,8 @@ import java.util.List;
 /**
  * Created by jn on 1/24/16.
  */
-public abstract class BaseDaoImpl<T> implements BaseDao<T> {
+@Transactional
+public abstract class BaseDaoImpl<T extends BaseEntity> implements BaseDao<T> {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -42,7 +44,9 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 
     }
 
-    public abstract T getByPrimaryKey(Serializable key);
+    public  T getByPrimaryKey(Serializable key){
+        return (T) getSession().get(this.type,key);
+    }
 
     public T update(T entity) {
         getSession().update(entity);

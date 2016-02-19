@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by jn on 1/24/16.
  */
-public interface  BaseDao<T> {
+public interface  BaseDao<T extends BaseEntity> {
 
     public Session getSession();
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="ar.edu.unlp.entities.UsuarioRolEquipo">
+        <table name="UsuarioRolEquipo" schema="SistemaTickets" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="idUsuarioRolEquipo" precision="11"/>
+            </id>
+            <basic name="esLider">
+                <column name="esLider" nullable="false" precision="1"/>
+            </basic>
+            <basic name="activo">
+                <column name="activo" nullable="false" precision="1"/>
+            </basic>
+            <many-to-one name="equipo" optional="true" target-entity="ar.edu.unlp.entities.Equipo">
+                <join-column name="idEquipo" referenced-column-name="idEquipo"/>
+            </many-to-one>
+            <many-to-one name="usuario" optional="true" target-entity="ar.edu.unlp.entities.Usuario">
+                <join-column name="idUsuario" referenced-column-name="idUsuario"/>
+            </many-to-one>
+            <one-to-one name="itemsAsignados" optional="true" mapped-by="responsable"
+                        target-entity="ar.edu.unlp.entities.Item"/>
+            <one-to-one name="rol" optional="true" target-entity="ar.edu.unlp.entities.Rol">
+                <join-column name="idRol" referenced-column-name="idRol"/>
+            </one-to-one>
+        </attributes>
+    </entity>
+</entity-mappings>

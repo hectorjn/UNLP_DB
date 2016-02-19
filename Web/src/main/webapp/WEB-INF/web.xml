@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-	      http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-         version="2.5">
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
     <display-name>Test JSF</display-name>
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>ar.edu.unlp.filters.LoginFilter</filter-class>
+    </filter>
 
     <!-- Disable use of threading for single-threaded environments such as
      the Google AppEngine. -->
+
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+    <listener>
+        <listener-class>
+            org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
 
 
     <context-param>
@@ -23,20 +39,29 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Production</param-value>
     </context-param>
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/faces-config.xml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
+    </context-param>
 
     <context-param>
         <param-name>primefaces.THEME</param-name>
-        <param-value>hot-sneaks</param-value>
+        <param-value>none</param-value>
     </context-param>
 
-    <context-param>
-        <param-name>org.apache.myfaces.EXPRESSION_FACTORY</param-name>
-        <param-value>org.jboss.el.ExpressionFactoryImpl</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.EL_RESOLVER_COMPARATOR</param-name>
-        <param-value>org.apache.myfaces.el.unified.OpenWebBeansELResolverComparator</param-value>
-    </context-param>
+
+    <!--    <context-param>
+            <param-name>org.apache.myfaces.EXPRESSION_FACTORY</param-name>
+            <param-value>org.jboss.el.ExpressionFactoryImpl</param-value>
+        </context-param>
+        <context-param>
+            <param-name>org.apache.myfaces.EL_RESOLVER_COMPARATOR</param-name>
+            <param-value>org.apache.myfaces.el.unified.OpenWebBeansELResolverComparator</param-value>
+        </context-param>-->
 
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
@@ -47,7 +72,7 @@
 
 
     <welcome-file-list>
-        <welcome-file>home.jsp</welcome-file>
+        <welcome-file>/home.jsp</welcome-file>
     </welcome-file-list>
 
     <!-- Map these files with JSF -->
@@ -71,5 +96,14 @@
         <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
         <param-value>.xhtml</param-value>
     </context-param>
+
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/pages/sec/*</url-pattern>
+    </filter-mapping>
+
+    <session-config>
+        <session-timeout>10</session-timeout>
+    </session-config>
 
 </web-app>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="ar.edu.unlp.entities.Rol">
+
+        <table name="Rol" schema="SistemaTickets" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="idRol" precision="11"/>
+            </id>
+            <basic name="nombre">
+                <column name="nombreRol" nullable="false" length="45"/>
+            </basic>
+            <one-to-many name="usuarios" mapped-by="rolPrincipal" target-entity="ar.edu.unlp.entities.Usuario" fetch="LAZY"/>
+        </attributes>
+    </entity>
+</entity-mappings>

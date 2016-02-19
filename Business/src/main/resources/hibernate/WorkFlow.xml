@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="ar.edu.unlp.entities.WorkFlow">
+        <table name="WorkFlow" schema="SistemaTickets" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="idWorkFlow" precision="11"/>
+            </id>
+            <many-to-one name="estadoSiguiente" optional="true" target-entity="ar.edu.unlp.entities.Estado">
+                <join-column name="idEstadoSiguiente" referenced-column-name="idEstado"/>
+            </many-to-one>
+            <many-to-one name="estadoActual" optional="true" target-entity="ar.edu.unlp.entities.Estado">
+                <join-column name="idEstadoActual" referenced-column-name="idEstado"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+</entity-mappings>
